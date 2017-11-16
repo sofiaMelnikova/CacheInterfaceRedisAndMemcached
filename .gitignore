@@ -1,0 +1,41 @@
+# composer itself is not needed
+composer.phar
+
+# phpstorm project files
+.idea
+
+# vscode  project files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+node_modules
+sftp-config.json
+*.sublime-workspace
+*.sublime-project
+/.idea
+/nbproject/private/
+/vendor
+/composer.lock
+
+# Mac DS_Store Files
+.DS_Store
+
+# windows thumbnail cache
+Thumbs.db
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# composer vendor dir
+/vendor
+
+tests/_output/*
+
