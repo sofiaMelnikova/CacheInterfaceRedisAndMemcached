@@ -44,13 +44,13 @@ class CacheMemcached implements CacheInterface {
 
 	/**
 	 * @param string $key
-	 * @param string $value
+	 * @param mixed $value
 	 * @param null $ttl
 	 * @return InvalidArgumentException|bool
 	 */
 	public function set($key, $value, $ttl = null) {
-		if (!is_string($key) || !is_string($value)) {
-			return new InvalidArgumentException('Key and value must be string');
+		if (!is_string($key)) {
+			return new InvalidArgumentException('Key must be string');
 		}
 
 		return $this->memcached->set($key, $value, $ttl);
@@ -101,15 +101,9 @@ class CacheMemcached implements CacheInterface {
 	/**
 	 * @param iterable $values
 	 * @param null $ttl
-	 * @return InvalidArgumentException|bool
+	 * @return bool
 	 */
 	public function setMultiple($values, $ttl = null) {
-		foreach ($values as $key => $value) {
-			if (!is_string($key) || !is_string($value)) {
-				return new InvalidArgumentException('Keys and values in array must be string');
-			}
-		}
-
 		return $this->memcached->setMulti($values, $ttl);
 	}
 
