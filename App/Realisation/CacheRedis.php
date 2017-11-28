@@ -12,19 +12,15 @@ class CacheRedis implements CacheInterface {
      */
     private $redis;
 
-    const REDIS_PORT = 6379;
+	/**
+	 * CacheRedis constructor.
+	 * @param Redis $redis
+	 */
+	public function __construct(Redis $redis) {
+		$this->redis = $redis;
+	}
 
-    /**
-     * CacheRedis constructor.
-     * @param Redis $redis
-     * @param string $host
-     */
-    public function __construct(Redis $redis, $host = '127.0.0.1') {
-        $this->redis = $redis;
-        $this->redis->connect($host, self::REDIS_PORT);
-    }
-
-    /**
+	/**
      * @param string $key
      * @param null $default
      * @return InvalidArgumentException|bool|null|string

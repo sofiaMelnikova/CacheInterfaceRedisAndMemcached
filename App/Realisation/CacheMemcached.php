@@ -12,15 +12,13 @@ class CacheMemcached implements CacheInterface {
 	 * @var Memcached
 	 */
 	private $memcached;
-	const MEMCACHE_PORT = 11211;
 
 	/**
 	 * CacheMemcached constructor.
-	 * @param string $host
+	 * @param Memcached $memcached
 	 */
-	public function __construct(string $host = '127.0.0.1') {
-		$this->memcached = new Memcached();
-		$this->memcached->addServer($host, self::MEMCACHE_PORT);
+	public function __construct(Memcached $memcached) {
+		$this->memcached = $memcached;
 	}
 
 	/**
@@ -29,7 +27,7 @@ class CacheMemcached implements CacheInterface {
 	 * @return InvalidArgumentException|mixed|null
 	 */
 	public function get($key, $default = null) {
-		if (is_string($key)) {
+		if (!is_string($key)) {
 			return new InvalidArgumentException('Key must be string.');
 		}
 
